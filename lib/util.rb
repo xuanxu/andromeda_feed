@@ -1,3 +1,5 @@
+require 'twitter'
+
 module Util
 
   def twitter_client
