@@ -13,7 +13,7 @@ module Util
   def astroph_query
     papers = Arx(sort_by: :date_submitted, sort_order: :descending) do |query|
       query.category('astro-ph')
-      query.title('Andromeda').or.title('M31')
+      query.title('Andromeda Galaxy', 'M31', connective: :or)
     end
   end
 
