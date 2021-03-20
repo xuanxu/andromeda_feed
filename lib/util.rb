@@ -10,9 +10,9 @@ module Util
     end
   end
 
-  def astroph_query
-    papers = Arx(sort_by: :date_submitted, sort_order: :descending) do |query|
-      query.category('astro-ph')
+  def astroph_andromeda_query
+    Arx(sort_by: :date_submitted, sort_order: :descending, max_results: 7) do |query|
+      query.category('astro-ph.*')
       query.title('Andromeda Galaxy', 'M31', connective: :or)
     end
   end
