@@ -1,11 +1,17 @@
+GIT
+  remote: https://github.com/xuanxu/arx
+  revision: c6fe0f5e993eeb45bc2da83c5941d5260c4cb0d3
+  branch: improvements
+  specs:
+    arx (1.2.1)
+      nokogiri (~> 1.10)
+      nokogiri-happymapper (~> 0.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    arx (1.2.1)
-      nokogiri (~> 1.10)
-      nokogiri-happymapper (~> 0.8)
     buftok (0.2.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
@@ -29,7 +35,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     multipart-post (2.1.1)
     naught (1.1.0)
-    nokogiri (1.11.1-x86_64-darwin)
+    nokogiri (1.11.2-x86_64-darwin)
       racc (~> 1.4)
     nokogiri-happymapper (0.8.1)
       nokogiri (~> 1.5)
@@ -57,7 +63,7 @@ PLATFORMS
   x86_64-darwin-19
 
 DEPENDENCIES
-  arx
+  arx!
   twitter (~> 7.0.0)
 
 RUBY VERSION
