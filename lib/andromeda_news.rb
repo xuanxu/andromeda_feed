@@ -1,12 +1,19 @@
 require_relative 'util'
-include Util
 
-yesterday_papers = astroph_andromeda_daily_query
-emojis = %w(✨ 🛰 🌠 💫 🚀 🌌 💥 ⚡️ 📃 🔭 🌟)
+class AndromedaFeed
+  include Util
 
+  def update
+    yesterday_papers = astroph_andromeda_daily_query
 
-papers.each do |paper|
-  title = paper.title
-  url = paper.url
-  # twitter_client send post "#{emojis.sample} #{title}\n#{url}"
+    papers.each do |paper|
+      title = paper.title
+      url = paper.url
+      twitter_client.update("#{emojis.sample} #{title}\n#{url}")
+    end
+  end
+
+  def emojis
+    %w(✨ 🛰 🌠 💫 🚀 🌌 💥 ⚡️ 📃 🔭 🌟)
+  end
 end
