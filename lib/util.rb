@@ -18,7 +18,7 @@ module Util
   end
 
   def twitter_client
-    @client ||= Twitter::REST::Client.new do |config|
+    @tw_client ||= Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV["TW_ANDROMEDAFEED_API_KEY"]
       config.consumer_secret     = ENV["TW_ANDROMEDAFEED_SECRET_KEY"]
       config.access_token        = ENV["TW_ANDROMEDAFEED_ACCESS_TOKEN"]
