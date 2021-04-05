@@ -1,8 +1,21 @@
 require 'twitter'
 require 'arx'
+require 'nasa_apod'
 require 'date'
 
 module Util
+
+  def apod_client
+    @apod_client || = NasaApod::Client.new(api_key: ENV["NASA_APOD_API_KEY"])
+  end
+
+  def apod_today
+    apod_client.search(date: Date.today)
+  end
+
+  def apod_url_today
+    "https://apod.nasa.gov/apod/ap#{Date.today.strftime("%Y%m%d")}.html"
+  end
 
   def twitter_client
     @client ||= Twitter::REST::Client.new do |config|
