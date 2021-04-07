@@ -74,6 +74,7 @@ PLATFORMS
 DEPENDENCIES
   arx!
   nasa_apod
+  rake
   twitter (~> 7.0.0)
 
 RUBY VERSION
