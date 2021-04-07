@@ -6,7 +6,7 @@ class AndromedaFeed
   def update_papers
     yesterday_papers = astroph_andromeda_daily_query
 
-    papers.each do |paper|
+    yesterday_papers.each do |paper|
       title = paper.title
       url = paper.url
       twitter_client.update("#{emojis.sample} #{title}\n#{url}")

@@ -6,7 +6,7 @@ require 'date'
 module Util
 
   def apod_client
-    @apod_client || = NasaApod::Client.new(api_key: ENV["NASA_APOD_API_KEY"])
+    @apod_client ||= NasaApod::Client.new(api_key: ENV["NASA_APOD_API_KEY"])
   end
 
   def apod_today
@@ -33,7 +33,7 @@ module Util
     Arx(sort_by: :date_submitted, sort_order: :descending) do |query|
       query.category(all_categories, connective: :or)
       query.title('Andromeda Galaxy', 'M31', connective: :or)
-      query.last_updated_date("[#{yesterday}0000 TO #{yesterday}2359]", exact: false)
+      query.last_updated_date("[#{day}0000 TO #{day}2359]", exact: false)
     end
   end
 
