@@ -11,6 +11,8 @@ class AndromedaFeed
       url = paper.url
       twitter_client.update("#{emojis.sample} #{title}\n#{url}")
     end
+
+    yesterday_papers.size
   end
 
   def update_apod
