@@ -16,6 +16,11 @@ namespace :andromeda do
 
   desc "Tweet APOD if Andromeda is in it"
   task :update_apod do
-    AndromedaFeed.new.update_apod
+    apod_found = AndromedaFeed.new.update_apod
+    if apod_found
+      puts "Andromeda is in today's APOD!"
+    else
+      puts "Today's APOD does not include Andromeda"
+    end
   end
 end
