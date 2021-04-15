@@ -17,9 +17,12 @@ class AndromedaFeed
 
   def update_apod
     pic = apod_today
-    if pic.title.to_s.include? "Andromeda"
+    m31_in_apod = pic.title.to_s.include? "Andromeda"
+    if m31_in_apod
       twitter_client.update("#{pic.title} #{apod_url_today}")
     end
+
+    m31_in_apod
   end
 
   def emojis
