@@ -17,6 +17,17 @@ module Util
     "https://apod.nasa.gov/apod/ap#{Date.today.strftime("%Y%m%d")}.html"
   end
 
+  def apod_image_url(pic)
+    case pic.media_type
+    when "image"
+      pic.url
+    when "video"
+      pic.thumbnail_url
+    else
+      pic.url
+    end
+  end
+
   def twitter_client
     @tw_client ||= Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV["TW_ANDROMEDAFEED_API_KEY"]
