@@ -19,7 +19,7 @@ class AndromedaFeed
     pic = apod_today
     m31_in_apod = pic.title.to_s.include? "Andromeda"
 
-    if m31_in_apod
+    if m31_in_apod && pic.media_type == "image"
       image_file = File.open(URI.open(pic.url))
       twitter_client.update_with_media("#{pic.title} #{apod_url_today}", image_file)
     end
