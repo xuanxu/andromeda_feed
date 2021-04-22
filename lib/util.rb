@@ -14,7 +14,7 @@ module Util
   end
 
   def apod_url_today
-    "https://apod.nasa.gov/apod/ap#{Date.today.strftime("%Y%m%d")}.html"
+    "https://apod.nasa.gov/apod/ap#{Date.today.strftime("%y%m%d")}.html"
   end
 
   def apod_image_url(pic)
