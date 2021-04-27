@@ -41,11 +41,10 @@ module Util
     subcats = ['GA', 'CO', 'EP', 'HE', 'IM', 'SR']
     all_categories = subcats.map {|subcat| "astro-ph." + subcat}
     day = day.strftime("%Y%m%d")
-    Arx(sort_by: :date_submitted, sort_order: :descending) do |query|
+    Arx(sort_by: :submitted_at, sort_order: :descending) do |query|
       query.category(all_categories, connective: :or)
       query.title('Andromeda Galaxy', 'M31', connective: :or)
-      query.last_updated_date("[#{day}0000 TO #{day}2359]", exact: false)
+      query.updated_at("[#{day}0000 TO #{day}2359]", exact: false)
     end
   end
-
 end
