@@ -6,11 +6,11 @@ namespace :andromeda do
     papers_found = AndromedaFeed.new.update_papers
     case papers_found
     when 0
-      puts "No papers about Andromeda today"
+      puts "💔 No papers about Andromeda today"
     when 1
-      puts "A new paper about Andromeda!"
+      puts "✨ A new paper about Andromeda!"
     else
-      puts "Yay! #{papers_found} new papers found and tweeted!"
+      puts "✨ Yay! #{papers_found} new papers found and tweeted!"
     end
   end
 
@@ -18,9 +18,9 @@ namespace :andromeda do
   task :update_apod do
     apod_found = AndromedaFeed.new.update_apod
     if apod_found
-      puts "Andromeda is in today's APOD!"
+      puts "✨ Andromeda is in today's APOD!"
     else
-      puts "Today's APOD does not include Andromeda"
+      puts "💔 Today's APOD does not include Andromeda"
     end
   end
 end
