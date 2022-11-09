@@ -2,6 +2,9 @@ require 'twitter'
 require 'arx'
 require 'nasa_apod'
 require 'date'
+require "faraday"
+require "faraday/multipart"
+require "json"
 
 module Util
 
@@ -37,8 +40,30 @@ module Util
     end
   end
 
-  def mastodon_post(text, media)
+  def mastodon_post(text, media_file)
+    headers = { "Authorization" => "Bearer #{ENV["MASTODON_ANDROMEDAFEED_TOKEN"]}" }
 
+    mastodon_url = "https://astrodon.social"
+    media_path = "/api/v2/media"
+    status_url = "https://astrodon.social/api/v1/statuses"
+
+    parameters = { status: text }
+
+    unless media.nil?
+      conn = Faraday.new(mastodon_url) do |f|
+        f.request :multipart
+      end
+
+      payload = {}
+      payload[:file] = Faraday::FilePart.new(media_file, "image")
+
+      attachment = conn.post(media_path, payload, headers)
+      if attachment.status.between?(200, 299)
+        parameters[:media_ids] = [JSON.parse(attachment.body)["id"]].compact
+      end
+    end
+
+    response = Faraday.post(status_url, parameters, headers)
   end
 
   def astroph_andromeda_daily_query(day=Date.today.prev_day)
