@@ -22,8 +22,10 @@ class AndromedaFeed
     m31_in_apod = pic.title.to_s.include? "Andromeda"
 
     if m31_in_apod
+      text = "#{pic.title} #{apod_url_today}"
       image_file = File.open(URI.open(apod_image_url(pic)))
-      twitter_client.update_with_media("#{pic.title} #{apod_url_today}", image_file)
+      twitter_client.update_with_media(text, image_file)
+      mastodon_post(text, image_file)
     end
 
     m31_in_apod
