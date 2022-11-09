@@ -37,6 +37,10 @@ module Util
     end
   end
 
+  def mastodon_post(text, media)
+
+  end
+
   def astroph_andromeda_daily_query(day=Date.today.prev_day)
     subcats = ['GA', 'CO', 'EP', 'HE', 'IM', 'SR']
     all_categories = subcats.map {|subcat| "astro-ph." + subcat}
