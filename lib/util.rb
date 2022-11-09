@@ -63,7 +63,7 @@ module Util
       end
     end
 
-    response = Faraday.post(status_url, parameters, headers)
+    Faraday.post(status_url, parameters, headers)
   end
 
   def astroph_andromeda_daily_query(day=Date.today.prev_day)
