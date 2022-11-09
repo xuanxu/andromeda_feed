@@ -9,7 +9,9 @@ class AndromedaFeed
     yesterday_papers.each do |paper|
       title = paper.title
       url = paper.url
-      twitter_client.update("#{emojis.sample} #{title}\n#{url}")
+      text = "#{emojis.sample} #{title}\n#{url}"
+      twitter_client.update(text)
+      mastodon_post(text, nil)
     end
 
     yesterday_papers.size
