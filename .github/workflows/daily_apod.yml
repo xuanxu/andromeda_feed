@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     # Allow to run the action manually
 jobs:
-  build:
+  andromeda-images:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
