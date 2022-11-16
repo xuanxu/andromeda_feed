@@ -5,6 +5,7 @@ require 'date'
 require "faraday"
 require "faraday/multipart"
 require "json"
+require "digest"
 
 module Util
 
@@ -63,6 +64,7 @@ module Util
       end
     end
 
+    headers["Idempotency-Key"] = Digest::SHA1.hexdigest(text)
     Faraday.post(status_url, parameters, headers)
   end
 
