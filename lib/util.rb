@@ -49,7 +49,7 @@ module Util
 
     parameters = { status: text }
 
-    unless media.nil?
+    unless media_file.nil?
       conn = Faraday.new(mastodon_url) do |f|
         f.request :multipart
       end
