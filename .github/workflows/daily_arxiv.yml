@@ -1,0 +1,20 @@
+name: Daily arXiv
+on:
+  schedule:
+    # Run daily at 18:00
+    - cron: '0 18 * * *'
+  workflow_dispatch:
+    # Allow to run the action manually
+jobs:
+  andromeda-papers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Andromeda Feed
+        uses: actions/checkout@v3
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.2'
+          bundler-cache: true
+      - name: Check arXiv
+        run: bundle exec rake andromeda:update_papers
