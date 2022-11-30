@@ -8,6 +8,13 @@ on:
 jobs:
   andromeda-papers:
     runs-on: ubuntu-latest
+    env:
+      MASTODON_ANDROMEDAFEED_TOKEN: ${{ secrets.MASTODON_ANDROMEDAFEED_TOKEN }}
+      NASA_APOD_API_KEY: ${{ secrets.NASA_APOD_API_KEY }}
+      TW_ANDROMEDAFEED_ACCESS_TOKEN: ${{ secrets.TW_ANDROMEDAFEED_ACCESS_TOKEN }}
+      TW_ANDROMEDAFEED_ACCESS_TOKEN_SECRET: ${{ secrets.TW_ANDROMEDAFEED_ACCESS_TOKEN_SECRET }}
+      TW_ANDROMEDAFEED_API_KEY: ${{ secrets.TW_ANDROMEDAFEED_API_KEY }}
+      TW_ANDROMEDAFEED_API_SECRET_KEY: ${{ secrets.TW_ANDROMEDAFEED_API_SECRET_KEY }}
     steps:
       - name: Checkout Andromeda Feed
         uses: actions/checkout@v3
