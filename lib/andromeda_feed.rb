@@ -10,8 +10,18 @@ class AndromedaFeed
       title = paper.title
       url = paper.url
       text = "#{emojis.sample} #{title}\n#{url}"
-      twitter_client.update(text)
-      mastodon_post(text, nil)
+
+      begin
+        twitter_client.update(text)
+      rescue Exception => e
+        puts "  ‼️💥 ERROR posting paper to Twitter: #{e.message}"
+      end
+
+      begin
+        mastodon_post(text, nil)
+      rescue Exception => e
+        puts "  ‼️💥 ERROR posting paper to Mastodon: #{e.message}"
+      end
     end
 
     yesterday_papers.size
@@ -24,8 +34,18 @@ class AndromedaFeed
     if m31_in_apod
       text = "#{pic.title} #{apod_url_today}"
       image_file = File.open(URI.open(apod_image_url(pic)))
-      twitter_client.update_with_media(text, image_file)
-      mastodon_post(text, image_file)
+
+      begin
+        twitter_client.update_with_media(text, image_file)
+      rescue Exception => e
+        puts "  ‼️💥 ERROR sending image to Twitter: #{e.message}"
+      end
+
+      begin
+        mastodon_post(text, image_file)
+      rescue Exception => e
+        puts "  ‼️💥 ERROR sending image to Twitter: #{e.message}"
+      end
     end
 
     m31_in_apod
