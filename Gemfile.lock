@@ -81,7 +81,7 @@ DEPENDENCIES
   twitter (~> 7.0.0)
 
 RUBY VERSION
-   ruby 3.1.3p185
+   ruby 3.2.1p31
 
 BUNDLED WITH
    2.3.26
