@@ -44,7 +44,7 @@ class AndromedaFeed
       begin
         mastodon_post(text, image_file)
       rescue Exception => e
-        puts "  ‼️💥 ERROR sending image to Twitter: #{e.message}"
+        puts "  ‼️💥 ERROR sending image to Mastodon: #{e.message}"
       end
     end
 
