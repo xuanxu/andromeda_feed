@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.2.1'
+ruby '3.2.2'
 
 gem 'twitter', '~> 7.0.0'
 gem 'arx'
