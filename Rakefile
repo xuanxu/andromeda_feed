@@ -10,7 +10,7 @@ namespace :andromeda do
     when 1
       puts "✨ A new paper about Andromeda!"
     else
-      puts "✨ Yay! #{papers_found} new papers found and tweeted!"
+      puts "✨ Yay! #{papers_found} new papers found and posted!"
     end
   end
 
