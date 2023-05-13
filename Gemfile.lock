@@ -43,7 +43,7 @@ GEM
     nasa_apod (1.2.1)
       httparty
     naught (1.1.0)
-    nokogiri (1.14.3)
+    nokogiri (1.14.4)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     nokogiri-happymapper (0.9.0)
