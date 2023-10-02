@@ -12,9 +12,10 @@ class AndromedaFeed
       text = "#{emojis.sample} #{title}\n#{url}"
 
       begin
-        twitter_client.update(text)
+        tweet_body = { text: text }
+        x_client.post("tweets", tweet_body.to_json)
       rescue Exception => e
-        puts "  ‼️💥 ERROR posting paper to Twitter: #{e.message}"
+        puts "  ‼️💥 ERROR posting paper to X: #{e.message}"
       end
 
       begin
@@ -36,9 +37,12 @@ class AndromedaFeed
       image_file = File.open(URI.open(apod_image_url(pic)))
 
       begin
-        twitter_client.update_with_media(text, image_file)
+        uploaded_media = x_media(image_file.path)
+        tweet_body = {text: text, media: {media_ids: [uploaded_media["media_id_string"]]}}
+
+        x_client.post("tweets", tweet_body.to_json)
       rescue Exception => e
-        puts "  ‼️💥 ERROR sending image to Twitter: #{e.message}"
+        puts "  ‼️💥 ERROR sending image to X: #{e.message}"
       end
 
       begin

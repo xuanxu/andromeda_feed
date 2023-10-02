@@ -1,4 +1,5 @@
-require 'twitter'
+require 'x'
+require 'mime/types'
 require 'arx'
 require 'nasa_apod'
 require 'date'
@@ -32,13 +33,33 @@ module Util
     end
   end
 
-  def twitter_client
-    @tw_client ||= Twitter::REST::Client.new do |config|
-      config.consumer_key        = ENV["TW_ANDROMEDAFEED_API_KEY"]
-      config.consumer_secret     = ENV["TW_ANDROMEDAFEED_API_SECRET_KEY"]
-      config.access_token        = ENV["TW_ANDROMEDAFEED_ACCESS_TOKEN"]
-      config.access_token_secret = ENV["TW_ANDROMEDAFEED_ACCESS_TOKEN_SECRET"]
-    end
+  def x_credentials
+    {
+      api_key:             ENV["TW_ANDROMEDAFEED_API_KEY"],
+      api_key_secret:      ENV["TW_ANDROMEDAFEED_API_SECRET_KEY"],
+      access_token:        ENV["TW_ANDROMEDAFEED_ACCESS_TOKEN"],
+      access_token_secret: ENV["TW_ANDROMEDAFEED_ACCESS_TOKEN_SECRET"],
+    }
+  end
+
+  def x_client
+    @x_client ||= X::Client.new(**x_credentials)
+  end
+
+  def x_media(media_file_path)
+    upload_client = X::Client.new(base_url: "https://upload.twitter.com/1.1/", **x_credentials)
+    boundary = "AaB03x"
+    media_category = "tweet_image" # other options include: tweet_video, tweet_gif, dm_image, dm_video, dm_gif, subtitles
+
+    upload_client.content_type = "multipart/form-data, boundary=#{boundary}"
+
+    upload_body = "--#{boundary}\r\n" \
+                  "Content-Disposition: form-data; name=\"media\"; filename=\"#{File.basename(media_file_path)}\"\r\n" \
+                  "Content-Type: #{MIME::Types.type_for(media_file_path).first.content_type}\r\n\r\n" \
+                  "#{File.read(media_file_path)}\r\n" \
+                  "--#{boundary}--\r\n"
+
+    media = upload_client.post("media/upload.json?media_category=#{media_category}", upload_body)
   end
 
   def mastodon_post(text, media_file)
