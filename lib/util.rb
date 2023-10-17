@@ -46,7 +46,7 @@ module Util
     @x_client ||= X::Client.new(**x_credentials)
   end
 
-  def x_media(media_file_path)
+  def x_media(media_file_path, media_file_original_url)
     upload_client = X::Client.new(base_url: "https://upload.twitter.com/1.1/", **x_credentials)
     boundary = "AaB03x"
     media_category = "tweet_image" # other options include: tweet_video, tweet_gif, dm_image, dm_video, dm_gif, subtitles
@@ -55,7 +55,7 @@ module Util
 
     upload_body = "--#{boundary}\r\n" \
                   "Content-Disposition: form-data; name=\"media\"; filename=\"#{File.basename(media_file_path)}\"\r\n" \
-                  "Content-Type: #{MIME::Types.type_for(media_file_path).first.content_type}\r\n\r\n" \
+                  "Content-Type: #{MIME::Types.type_for(media_file_original_url).first.content_type}\r\n\r\n" \
                   "#{File.read(media_file_path)}\r\n" \
                   "--#{boundary}--\r\n"
 

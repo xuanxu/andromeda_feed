@@ -36,7 +36,8 @@ class AndromedaFeed
 
     if m31_in_apod
       text = "#{pic.title} #{apod_url_today}"
-      image_file = File.open(URI.open(apod_image_url(pic)))
+      image_file_url = apod_image_url(pic)
+      image_file = File.open(URI.open(image_file_url))
 
       begin
         mastodon_post(text, image_file)
@@ -46,7 +47,7 @@ class AndromedaFeed
       end
 
       begin
-        uploaded_media = x_media(image_file.path)
+        uploaded_media = x_media(image_file.path, image_file_url)
         tweet_body = {text: text, media: {media_ids: [uploaded_media["media_id_string"]]}}
 
         x_client.post("tweets", tweet_body.to_json)
