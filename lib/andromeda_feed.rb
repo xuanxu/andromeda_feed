@@ -37,18 +37,18 @@ class AndromedaFeed
       image_file = File.open(URI.open(apod_image_url(pic)))
 
       begin
+        mastodon_post(text, image_file)
+      rescue Exception => e
+        puts "  ‼️💥 ERROR sending image to Mastodon: #{e.message}"
+      end
+
+      begin
         uploaded_media = x_media(image_file.path)
         tweet_body = {text: text, media: {media_ids: [uploaded_media["media_id_string"]]}}
 
         x_client.post("tweets", tweet_body.to_json)
       rescue Exception => e
         puts "  ‼️💥 ERROR sending image to X: #{e.message}"
-      end
-
-      begin
-        mastodon_post(text, image_file)
-      rescue Exception => e
-        puts "  ‼️💥 ERROR sending image to Mastodon: #{e.message}"
       end
     end
 
