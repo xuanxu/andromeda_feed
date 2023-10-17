@@ -14,12 +14,14 @@ class AndromedaFeed
       begin
         tweet_body = { text: text }
         x_client.post("tweets", tweet_body.to_json)
+        puts "  Paper twitted!"
       rescue Exception => e
         puts "  ‼️💥 ERROR posting paper to X: #{e.message}"
       end
 
       begin
         mastodon_post(text, nil)
+        puts "  Paper posted to Mastodon!"
       rescue Exception => e
         puts "  ‼️💥 ERROR posting paper to Mastodon: #{e.message}"
       end
@@ -38,6 +40,7 @@ class AndromedaFeed
 
       begin
         mastodon_post(text, image_file)
+        puts "  APOD posted to Mastodon!"
       rescue Exception => e
         puts "  ‼️💥 ERROR sending image to Mastodon: #{e.message}"
       end
@@ -47,6 +50,7 @@ class AndromedaFeed
         tweet_body = {text: text, media: {media_ids: [uploaded_media["media_id_string"]]}}
 
         x_client.post("tweets", tweet_body.to_json)
+        puts "  APOD twitted!"
       rescue Exception => e
         puts "  ‼️💥 ERROR sending image to X: #{e.message}"
       end
