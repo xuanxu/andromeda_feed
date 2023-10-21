@@ -17,7 +17,7 @@ jobs:
       TW_ANDROMEDAFEED_API_SECRET_KEY: ${{ secrets.TW_ANDROMEDAFEED_API_SECRET_KEY }}
     steps:
       - name: Checkout Andromeda Feed
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
