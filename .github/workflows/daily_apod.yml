@@ -1,8 +1,8 @@
 name: Daily APOD
 on:
   schedule:
-    # Run daily at 09:00
-    - cron: '0 9 * * *'
+    # Run daily at 17:00
+    - cron: '0 17 * * *'
   workflow_dispatch:
     # Allow to run the action manually
 jobs:
