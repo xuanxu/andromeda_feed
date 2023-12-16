@@ -34,6 +34,8 @@ module Util
   end
 
   def x_credentials
+    # When authenticating requests to the Twitter API v2 endpoints, 
+    # you must use keys and tokens from a Twitter developer App that is attached to a Project.
     {
       api_key:             ENV["TW_ANDROMEDAFEED_API_KEY"],
       api_key_secret:      ENV["TW_ANDROMEDAFEED_API_SECRET_KEY"],
