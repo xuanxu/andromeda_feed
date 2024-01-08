@@ -1,7 +1,7 @@
 require_relative 'lib/andromeda_feed'
 
 namespace :andromeda do
-  desc "Tweet new papers in arXiv"
+  desc "Post new papers in arXiv"
   task :update_papers do
     papers_found = AndromedaFeed.new.update_papers
     case papers_found
@@ -14,7 +14,7 @@ namespace :andromeda do
     end
   end
 
-  desc "Tweet APOD if Andromeda is in it"
+  desc "Post APOD if Andromeda is in it"
   task :update_apod do
     apod_found = AndromedaFeed.new.update_apod
     if apod_found
