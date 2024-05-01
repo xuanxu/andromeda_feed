@@ -91,6 +91,33 @@ module Util
     Faraday.post(status_url, parameters, headers)
   end
 
+  def bluesky_post(text, link, media_file)
+    login_url = "https://bsky.social/xrpc/com.atproto.server.createSession"
+    login_headers = { "Content-Type" => "application/json" }
+    login_parameters = { identifier: "#{ENV['BSKY_HANDLE']}", password: "#{ENV['BSKY_PASSWORD']}" }
+
+    login = Faraday.post(login_url, login_parameters.to_json, login_headers)
+
+    if login.status.between?(200, 299)
+      login_response = JSON.parse(login.body)
+      post_url = "https://bsky.social/xrpc/com.atproto.repo.createRecord"
+      post_headers = { "Content-Type" => "application/json", "Authorization" => "Bearer #{login_response['accessJwt']}" }
+
+      post_body = { repo: login_parameters[:identifier],
+                    collection: "app.bsky.feed.post",
+                    record: { text: text,
+                              createdAt: Time.now.strftime('%Y-%m-%dT%H:%M:%SZ'),
+                              langs: ["en-US"],
+                              facets: [{
+                                        index: { byteStart: 5, byteEnd: text.bytes.size},
+                                        features: [{ "$type" => 'app.bsky.richtext.facet#link', uri: link }]
+                                      }]
+                            }
+                  }
+      Faraday.post(post_url, post_body.to_json, post_headers)
+    end
+  end
+
   def astroph_andromeda_daily_query(day=Date.today.prev_day)
     subcats = ['GA', 'CO', 'EP', 'HE', 'IM', 'SR']
     all_categories = subcats.map {|subcat| "astro-ph." + subcat}

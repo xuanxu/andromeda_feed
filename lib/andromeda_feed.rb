@@ -25,6 +25,14 @@ class AndromedaFeed
       rescue Exception => e
         puts "  ‼️💥 ERROR posting paper to Mastodon: #{e.message}"
       end
+
+      begin
+        text = "#{emojis.sample} #{title}"
+        bluesky_post(text, url, nil)
+        puts "  Paper posted to Bluesky!"
+      rescue Exception => e
+        puts "  ‼️💥 ERROR posting paper to Bluesky: #{e.message}"
+      end
     end
 
     yesterday_papers.size
