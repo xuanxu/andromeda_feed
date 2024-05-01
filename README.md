@@ -5,6 +5,6 @@ This is the code for a bot posting recent scientific papers and pics from the An
 You can get updates following:
  - <a rel="me" href="https://astrodon.social/@andromeda">@Andromeda</a> at Mastodon
  - [@AndromedaFeed](https://twitter.com/AndromedaFeed) at Twitter/X
- - [M31Andromeda](https://bsky.app/profile/m31andromeda.bsky.social) at Bluesky
+ - [@M31Andromeda](https://bsky.app/profile/m31andromeda.bsky.social) at Bluesky
 
 <link rel="me" href="https://astrodon.social/@andromeda"></link>
