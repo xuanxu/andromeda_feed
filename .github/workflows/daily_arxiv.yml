@@ -1,8 +1,8 @@
 name: Daily arXiv
 on:
   schedule:
-    # Run daily at 13:00
-    - cron: '0 13 * * *'
+    # Run daily at 17:00
+    - cron: '0 17 * * *'
   workflow_dispatch:
     # Allow to run the action manually
 jobs:
