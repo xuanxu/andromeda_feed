@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '3.4.2'
 
 gem 'x'
+gem 'base64' # required by X-ruby gem
 gem 'mime-types'
 gem 'arx'
 gem 'nasa_apod'
