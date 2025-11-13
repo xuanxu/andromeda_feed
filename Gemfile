@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.4.2'
+ruby '3.4.7'
 
 gem 'x'
 gem 'base64' # required by X-ruby gem
