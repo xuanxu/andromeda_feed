@@ -5,44 +5,44 @@ GEM
       nokogiri (~> 1.10)
       nokogiri-happymapper (~> 0.8)
     base64 (0.3.0)
-    bigdecimal (3.2.2)
+    bigdecimal (4.0.1)
     csv (3.3.5)
-    faraday (2.13.4)
+    faraday (2.14.0)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
-    faraday-multipart (1.1.1)
+    faraday-multipart (1.2.0)
       multipart-post (~> 2.0)
-    faraday-net_http (3.4.1)
-      net-http (>= 0.5.0)
-    httparty (0.23.1)
+    faraday-net_http (3.4.2)
+      net-http (~> 0.5)
+    httparty (0.24.0)
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
-    json (2.13.1)
+    json (2.18.0)
     logger (1.7.0)
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0722)
+    mime-types-data (3.2025.0924)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
-    multi_xml (0.7.2)
-      bigdecimal (~> 3.1)
+    multi_xml (0.8.1)
+      bigdecimal (>= 3.1, < 5)
     multipart-post (2.4.1)
     nasa_apod (1.2.1)
       httparty
-    net-http (0.6.0)
-      uri
-    nokogiri (1.18.9)
+    net-http (0.9.1)
+      uri (>= 0.11.1)
+    nokogiri (1.19.0)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri-happymapper (0.10.0)
+    nokogiri-happymapper (0.10.1)
       nokogiri (~> 1.5)
     racc (1.8.1)
-    rake (13.3.0)
-    uri (1.0.3)
-    x (0.16.0)
+    rake (13.3.1)
+    uri (1.1.1)
+    x (0.18.0)
       base64 (>= 0.2)
 
 PLATFORMS
@@ -59,7 +59,7 @@ DEPENDENCIES
   x
 
 RUBY VERSION
-   ruby 3.4.7p58
+  ruby 4.0.1
 
 BUNDLED WITH
-   2.7.0
+  4.0.3
