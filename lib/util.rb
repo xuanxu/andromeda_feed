@@ -129,5 +129,7 @@ module Util
       query.title('Andromeda Galaxy', 'M31', connective: :or)
       query.updated_at("[#{day}0000 TO #{day}2359]", exact: false)
     end
+  rescue Exception => e
+    raise "❌ Error querying ArXiV: #{e.message}"
   end
 end
