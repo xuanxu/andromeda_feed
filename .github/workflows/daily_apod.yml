@@ -19,7 +19,7 @@ jobs:
       BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
     steps:
       - name: Checkout Andromeda Feed
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
